@@ -163,7 +163,3 @@ else:
             "**Interpretasi:** Model memprediksi status mahasiswa dengan probabilitas tertinggi. "
             "Visualisasi di atas menunjukkan tingkat kepercayaan model untuk setiap kemungkinan status."
         )
-
-# --- FOOTER ---
-st.write("---")
-st.write("Dibuat berdasarkan notebook Proyek Akhir oleh Fathur Rahman Al Farizy.")
