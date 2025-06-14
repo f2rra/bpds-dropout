@@ -1,0 +1,31 @@
+services:
+  postgres-jayainstitut:
+    image: postgres:17.5-alpine
+    container_name: postgres-jayainstitut
+    environment:
+      POSTGRES_USER: admin_jayainstitut
+      POSTGRES_PASSWORD: a006ybf160
+      POSTGRES_DB: metabase_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always
+
+  metabase-jayainstitut:
+    image: metabase/metabase:v0.55.1
+    container_name: metabase-jayainstitut
+    ports:
+      - "3000:3000"
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: metabase_db
+      MB_DB_PORT: 5432
+      MB_DB_USER: admin_jayainstitut
+      MB_DB_PASS: a006ybf160
+      MB_DB_HOST: postgres-jayainstitut
+    depends_on:
+      - postgres-jayainstitut
+    restart: always
+
+volumes:
+  postgres_data:
